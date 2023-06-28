@@ -8,6 +8,7 @@ void setup() {
 
   // Initialize the serial port.
   Serial.begin(9600);
+  Serial.println("Iniciando");
 }
 
 void loop() {
@@ -18,7 +19,7 @@ void loop() {
   
   if (line == "prender") {
     digitalWrite(ledPin, HIGH);
-  } 
+  }  
   
   else if (line == "apagar") {
     digitalWrite(ledPin, LOW);
