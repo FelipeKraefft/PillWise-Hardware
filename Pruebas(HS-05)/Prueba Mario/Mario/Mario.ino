@@ -1,14 +1,16 @@
 
 #define ledPin 2
-#define buzzerPin 9
+#define buzzerPin 23
 
 void setup() {
   // Set pin 2 as an output.
   pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
 
   // Initialize the serial port.
   Serial.begin(9600);
   Serial.println("Iniciando");
+  sing(1, buzzerPin);
 }
 
 void loop() {
