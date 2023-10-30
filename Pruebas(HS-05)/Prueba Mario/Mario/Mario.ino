@@ -1,6 +1,6 @@
 
 #define ledPin 2
-#define buzzerPin 23
+#define buzzerPin 9
 
 void setup() {
   // Set pin 2 as an output.
@@ -27,11 +27,15 @@ void loop() {
     digitalWrite(ledPin, LOW);
   }
 
-  else if (line == "buzzer"){
+  else if (line == "mario"){
     sing(1, buzzerPin);
-    sing(2, buzzerPin);
-    sing(3, buzzerPin);
   }
+  else if (line == "buzzer"){
+    tone(buzzerPin, 1000);
+    delay(3000);
+    noTone(buzzerPin);
+  }
+  
   else
   {
     Serial.print(line);
