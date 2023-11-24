@@ -25,6 +25,7 @@ void setup()
 
 void loop(){
   Visualizacion_Serial();
+  Serial.println(gps.location.isValid());
 
   if (NMEA){
     while (neogps.available())
