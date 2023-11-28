@@ -16,7 +16,7 @@ const char* password =  "inventaronelVAR";
 
 const char* serverNameSoundGet = "http://10.8.17.90:3000/api/sound/1";
 
-const char* serverNameSoundPost = "http://10.8.17.90:3000/api/sound/1";
+const char* serverNameSoundPost = "https://pillwise-medicine.vercel.app/api/check";
 
 //String lat = "-58.454213";
 //String lon = "-34.549659";
@@ -48,14 +48,8 @@ void setup()
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 void loop(){
- if(WiFi.status()== WL_CONNECTED){
+ if (WiFi.status()== WL_CONNECTED){
     sendReieved(serverNameSoundPost);
-
-    
-
-
-
-
 
   }
   else {
@@ -178,11 +172,11 @@ String httpGETRequest(const char* serverName) {
 void sendReieved(String url){
   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
 
-    String datos_a_enviar = "Recibido";
+    String datos_a_enviar = "{\"message\":\"recibido\"}";
     HTTPClient http;
 
     http.begin(url);        //Indicamos el destino
-    http.addHeader("Content-Type", "text/plain"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
+    http.addHeader("Content-Type", "application/json"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
 
     int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)
 

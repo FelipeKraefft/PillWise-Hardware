@@ -101,3 +101,36 @@ String httpGETRequest(const char* serverName) {
 
   return payload;
 }
+
+void sendLatLon(String datos_a_enviar, String url){
+  if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
+
+    HTTPClient http;
+
+    http.begin(url);        //Indicamos el destino
+    http.addHeader("Content-Type", "application/json"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
+
+    int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)
+
+    if(codigo_respuesta>0){
+      Serial.println("Código HTTP ► " + String(codigo_respuesta));   //Print return code
+
+      if(codigo_respuesta == 200){
+        String cuerpo_respuesta = http.getString();
+        Serial.println("El servidor respondió ▼ ");
+        Serial.println(cuerpo_respuesta);
+
+      }
+    }
+    else{
+     Serial.print("Error enviando POST, código: ");
+     Serial.println(codigo_respuesta);
+    }
+    http.end();  //libero recursos
+
+  }
+  else{
+     Serial.println("Error en la conexión WIFI");
+  }
+  
+}
